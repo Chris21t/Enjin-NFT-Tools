@@ -1,0 +1,13 @@
+{
+    "name": "batchmint-send",
+    "version": "1.0.0",
+    "description": "A script for batch minting and distributing NFTs on Polkadot/Substrate-based blockchains.",
+    "main": "batchmint_script.js",
+    "type": "module",
+    "dependencies": {
+      "@polkadot/api": "^10.9.1",
+      "@polkadot/util-crypto": "^12.3.2",
+      "express": "^4.18.2",
+      "winston": "^3.10.0"
+  }
+}

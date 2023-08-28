@@ -1,0 +1,676 @@
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=utf-8"/><title>BatchMint Script</title><style>
+/* cspell:disable-file */
+/* webkit printing magic: print all background colors */
+html {
+	-webkit-print-color-adjust: exact;
+}
+* {
+	box-sizing: border-box;
+	-webkit-print-color-adjust: exact;
+}
+
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+@media only screen {
+	body {
+		margin: 2em auto;
+		max-width: 900px;
+		color: rgb(55, 53, 47);
+	}
+}
+
+body {
+	line-height: 1.5;
+	white-space: pre-wrap;
+}
+
+a,
+a.visited {
+	color: inherit;
+	text-decoration: underline;
+}
+
+.pdf-relative-link-path {
+	font-size: 80%;
+	color: #444;
+}
+
+h1,
+h2,
+h3 {
+	letter-spacing: -0.01em;
+	line-height: 1.2;
+	font-weight: 600;
+	margin-bottom: 0;
+}
+
+.page-title {
+	font-size: 2.5rem;
+	font-weight: 700;
+	margin-top: 0;
+	margin-bottom: 0.75em;
+}
+
+h1 {
+	font-size: 1.875rem;
+	margin-top: 1.875rem;
+}
+
+h2 {
+	font-size: 1.5rem;
+	margin-top: 1.5rem;
+}
+
+h3 {
+	font-size: 1.25rem;
+	margin-top: 1.25rem;
+}
+
+.source {
+	border: 1px solid #ddd;
+	border-radius: 3px;
+	padding: 1.5em;
+	word-break: break-all;
+}
+
+.callout {
+	border-radius: 3px;
+	padding: 1rem;
+}
+
+figure {
+	margin: 1.25em 0;
+	page-break-inside: avoid;
+}
+
+figcaption {
+	opacity: 0.5;
+	font-size: 85%;
+	margin-top: 0.5em;
+}
+
+mark {
+	background-color: transparent;
+}
+
+.indented {
+	padding-left: 1.5em;
+}
+
+hr {
+	background: transparent;
+	display: block;
+	width: 100%;
+	height: 1px;
+	visibility: visible;
+	border: none;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.09);
+}
+
+img {
+	max-width: 100%;
+}
+
+@media only print {
+	img {
+		max-height: 100vh;
+		object-fit: contain;
+	}
+}
+
+@page {
+	margin: 1in;
+}
+
+.collection-content {
+	font-size: 0.875rem;
+}
+
+.column-list {
+	display: flex;
+	justify-content: space-between;
+}
+
+.column {
+	padding: 0 1em;
+}
+
+.column:first-child {
+	padding-left: 0;
+}
+
+.column:last-child {
+	padding-right: 0;
+}
+
+.table_of_contents-item {
+	display: block;
+	font-size: 0.875rem;
+	line-height: 1.3;
+	padding: 0.125rem;
+}
+
+.table_of_contents-indent-1 {
+	margin-left: 1.5rem;
+}
+
+.table_of_contents-indent-2 {
+	margin-left: 3rem;
+}
+
+.table_of_contents-indent-3 {
+	margin-left: 4.5rem;
+}
+
+.table_of_contents-link {
+	text-decoration: none;
+	opacity: 0.7;
+	border-bottom: 1px solid rgba(55, 53, 47, 0.18);
+}
+
+table,
+th,
+td {
+	border: 1px solid rgba(55, 53, 47, 0.09);
+	border-collapse: collapse;
+}
+
+table {
+	border-left: none;
+	border-right: none;
+}
+
+th,
+td {
+	font-weight: normal;
+	padding: 0.25em 0.5em;
+	line-height: 1.5;
+	min-height: 1.5em;
+	text-align: left;
+}
+
+th {
+	color: rgba(55, 53, 47, 0.6);
+}
+
+ol,
+ul {
+	margin: 0;
+	margin-block-start: 0.6em;
+	margin-block-end: 0.6em;
+}
+
+li > ol:first-child,
+li > ul:first-child {
+	margin-block-start: 0.6em;
+}
+
+ul > li {
+	list-style: disc;
+}
+
+ul.to-do-list {
+	padding-inline-start: 0;
+}
+
+ul.to-do-list > li {
+	list-style: none;
+}
+
+.to-do-children-checked {
+	text-decoration: line-through;
+	opacity: 0.375;
+}
+
+ul.toggle > li {
+	list-style: none;
+}
+
+ul {
+	padding-inline-start: 1.7em;
+}
+
+ul > li {
+	padding-left: 0.1em;
+}
+
+ol {
+	padding-inline-start: 1.6em;
+}
+
+ol > li {
+	padding-left: 0.2em;
+}
+
+.mono ol {
+	padding-inline-start: 2em;
+}
+
+.mono ol > li {
+	text-indent: -0.4em;
+}
+
+.toggle {
+	padding-inline-start: 0em;
+	list-style-type: none;
+}
+
+/* Indent toggle children */
+.toggle > li > details {
+	padding-left: 1.7em;
+}
+
+.toggle > li > details > summary {
+	margin-left: -1.1em;
+}
+
+.selected-value {
+	display: inline-block;
+	padding: 0 0.5em;
+	background: rgba(206, 205, 202, 0.5);
+	border-radius: 3px;
+	margin-right: 0.5em;
+	margin-top: 0.3em;
+	margin-bottom: 0.3em;
+	white-space: nowrap;
+}
+
+.collection-title {
+	display: inline-block;
+	margin-right: 1em;
+}
+
+.page-description {
+    margin-bottom: 2em;
+}
+
+.simple-table {
+	margin-top: 1em;
+	font-size: 0.875rem;
+	empty-cells: show;
+}
+.simple-table td {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table th {
+	height: 29px;
+	min-width: 120px;
+}
+
+.simple-table-header-color {
+	background: rgb(247, 246, 243);
+	color: black;
+}
+.simple-table-header {
+	font-weight: 500;
+}
+
+time {
+	opacity: 0.5;
+}
+
+.icon {
+	display: inline-block;
+	max-width: 1.2em;
+	max-height: 1.2em;
+	text-decoration: none;
+	vertical-align: text-bottom;
+	margin-right: 0.5em;
+}
+
+img.icon {
+	border-radius: 3px;
+}
+
+.user-icon {
+	width: 1.5em;
+	height: 1.5em;
+	border-radius: 100%;
+	margin-right: 0.5rem;
+}
+
+.user-icon-inner {
+	font-size: 0.8em;
+}
+
+.text-icon {
+	border: 1px solid #000;
+	text-align: center;
+}
+
+.page-cover-image {
+	display: block;
+	object-fit: cover;
+	width: 100%;
+	max-height: 30vh;
+}
+
+.page-header-icon {
+	font-size: 3rem;
+	margin-bottom: 1rem;
+}
+
+.page-header-icon-with-cover {
+	margin-top: -0.72em;
+	margin-left: 0.07em;
+}
+
+.page-header-icon img {
+	border-radius: 3px;
+}
+
+.link-to-page {
+	margin: 1em 0;
+	padding: 0;
+	border: none;
+	font-weight: 500;
+}
+
+p > .user {
+	opacity: 0.5;
+}
+
+td > .user,
+td > time {
+	white-space: nowrap;
+}
+
+input[type="checkbox"] {
+	transform: scale(1.5);
+	margin-right: 0.6em;
+	vertical-align: middle;
+}
+
+p {
+	margin-top: 0.5em;
+	margin-bottom: 0.5em;
+}
+
+.image {
+	border: none;
+	margin: 1.5em 0;
+	padding: 0;
+	border-radius: 0;
+	text-align: center;
+}
+
+.code,
+code {
+	background: rgba(135, 131, 120, 0.15);
+	border-radius: 3px;
+	padding: 0.2em 0.4em;
+	border-radius: 3px;
+	font-size: 85%;
+	tab-size: 2;
+}
+
+code {
+	color: #eb5757;
+}
+
+.code {
+	padding: 1.5em 1em;
+}
+
+.code-wrap {
+	white-space: pre-wrap;
+	word-break: break-all;
+}
+
+.code > code {
+	background: none;
+	padding: 0;
+	font-size: 100%;
+	color: inherit;
+}
+
+blockquote {
+	font-size: 1.25em;
+	margin: 1em 0;
+	padding-left: 1em;
+	border-left: 3px solid rgb(55, 53, 47);
+}
+
+.bookmark {
+	text-decoration: none;
+	max-height: 8em;
+	padding: 0;
+	display: flex;
+	width: 100%;
+	align-items: stretch;
+}
+
+.bookmark-title {
+	font-size: 0.85em;
+	overflow: hidden;
+	text-overflow: ellipsis;
+	height: 1.75em;
+	white-space: nowrap;
+}
+
+.bookmark-text {
+	display: flex;
+	flex-direction: column;
+}
+
+.bookmark-info {
+	flex: 4 1 180px;
+	padding: 12px 14px 14px;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
+}
+
+.bookmark-image {
+	width: 33%;
+	flex: 1 1 180px;
+	display: block;
+	position: relative;
+	object-fit: cover;
+	border-radius: 1px;
+}
+
+.bookmark-description {
+	color: rgba(55, 53, 47, 0.6);
+	font-size: 0.75em;
+	overflow: hidden;
+	max-height: 4.5em;
+	word-break: break-word;
+}
+
+.bookmark-href {
+	font-size: 0.75em;
+	margin-top: 0.25em;
+}
+
+.sans { font-family: ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol"; }
+.code { font-family: "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace; }
+.serif { font-family: Lyon-Text, Georgia, ui-serif, serif; }
+.mono { font-family: iawriter-mono, Nitti, Menlo, Courier, monospace; }
+.pdf .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK JP'; }
+.pdf:lang(zh-CN) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK SC'; }
+.pdf:lang(zh-TW) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK TC'; }
+.pdf:lang(ko-KR) .sans { font-family: Inter, ui-sans-serif, -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, "Apple Color Emoji", Arial, sans-serif, "Segoe UI Emoji", "Segoe UI Symbol", 'Twemoji', 'Noto Color Emoji', 'Noto Sans CJK KR'; }
+.pdf .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .code { font-family: Source Code Pro, "SFMono-Regular", Menlo, Consolas, "PT Mono", "Liberation Mono", Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.pdf .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK JP'; }
+.pdf:lang(zh-CN) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK SC'; }
+.pdf:lang(zh-TW) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK TC'; }
+.pdf:lang(ko-KR) .serif { font-family: PT Serif, Lyon-Text, Georgia, ui-serif, serif, 'Twemoji', 'Noto Color Emoji', 'Noto Serif CJK KR'; }
+.pdf .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK JP'; }
+.pdf:lang(zh-CN) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK SC'; }
+.pdf:lang(zh-TW) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK TC'; }
+.pdf:lang(ko-KR) .mono { font-family: PT Mono, iawriter-mono, Nitti, Menlo, Courier, monospace, 'Twemoji', 'Noto Color Emoji', 'Noto Sans Mono CJK KR'; }
+.highlight-default {
+	color: rgba(55, 53, 47, 1);
+}
+.highlight-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.highlight-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.highlight-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.highlight-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.highlight-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.highlight-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.highlight-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.highlight-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.highlight-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.highlight-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.highlight-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.highlight-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.highlight-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.highlight-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.highlight-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.highlight-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.highlight-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.highlight-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.block-color-default {
+	color: inherit;
+	fill: inherit;
+}
+.block-color-gray {
+	color: rgba(120, 119, 116, 1);
+	fill: rgba(120, 119, 116, 1);
+}
+.block-color-brown {
+	color: rgba(159, 107, 83, 1);
+	fill: rgba(159, 107, 83, 1);
+}
+.block-color-orange {
+	color: rgba(217, 115, 13, 1);
+	fill: rgba(217, 115, 13, 1);
+}
+.block-color-yellow {
+	color: rgba(203, 145, 47, 1);
+	fill: rgba(203, 145, 47, 1);
+}
+.block-color-teal {
+	color: rgba(68, 131, 97, 1);
+	fill: rgba(68, 131, 97, 1);
+}
+.block-color-blue {
+	color: rgba(51, 126, 169, 1);
+	fill: rgba(51, 126, 169, 1);
+}
+.block-color-purple {
+	color: rgba(144, 101, 176, 1);
+	fill: rgba(144, 101, 176, 1);
+}
+.block-color-pink {
+	color: rgba(193, 76, 138, 1);
+	fill: rgba(193, 76, 138, 1);
+}
+.block-color-red {
+	color: rgba(212, 76, 71, 1);
+	fill: rgba(212, 76, 71, 1);
+}
+.block-color-gray_background {
+	background: rgba(241, 241, 239, 1);
+}
+.block-color-brown_background {
+	background: rgba(244, 238, 238, 1);
+}
+.block-color-orange_background {
+	background: rgba(251, 236, 221, 1);
+}
+.block-color-yellow_background {
+	background: rgba(251, 243, 219, 1);
+}
+.block-color-teal_background {
+	background: rgba(237, 243, 236, 1);
+}
+.block-color-blue_background {
+	background: rgba(231, 243, 248, 1);
+}
+.block-color-purple_background {
+	background: rgba(244, 240, 247, 0.8);
+}
+.block-color-pink_background {
+	background: rgba(249, 238, 243, 0.8);
+}
+.block-color-red_background {
+	background: rgba(253, 235, 236, 1);
+}
+.select-value-color-interactiveBlue { background-color: rgba(35, 131, 226, .07); }
+.select-value-color-pink { background-color: rgba(245, 224, 233, 1); }
+.select-value-color-purple { background-color: rgba(232, 222, 238, 1); }
+.select-value-color-green { background-color: rgba(219, 237, 219, 1); }
+.select-value-color-gray { background-color: rgba(227, 226, 224, 1); }
+.select-value-color-translucentGray { background-color: rgba(255, 255, 255, 0.0375); }
+.select-value-color-orange { background-color: rgba(250, 222, 201, 1); }
+.select-value-color-brown { background-color: rgba(238, 224, 218, 1); }
+.select-value-color-red { background-color: rgba(255, 226, 221, 1); }
+.select-value-color-yellow { background-color: rgba(253, 236, 200, 1); }
+.select-value-color-blue { background-color: rgba(211, 229, 239, 1); }
+.select-value-color-pageGlass { background-color: undefined; }
+.select-value-color-washGlass { background-color: undefined; }
+
+.checkbox {
+	display: inline-flex;
+	vertical-align: text-bottom;
+	width: 16;
+	height: 16;
+	background-size: 16px;
+	margin-left: 2px;
+	margin-right: 5px;
+}
+
+.checkbox-on {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20width%3D%2216%22%20height%3D%2216%22%20fill%3D%22%2358A9D7%22%2F%3E%0A%3Cpath%20d%3D%22M6.71429%2012.2852L14%204.9995L12.7143%203.71436L6.71429%209.71378L3.28571%206.2831L2%207.57092L6.71429%2012.2852Z%22%20fill%3D%22white%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+
+.checkbox-off {
+	background-image: url("data:image/svg+xml;charset=UTF-8,%3Csvg%20width%3D%2216%22%20height%3D%2216%22%20viewBox%3D%220%200%2016%2016%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%0A%3Crect%20x%3D%220.75%22%20y%3D%220.75%22%20width%3D%2214.5%22%20height%3D%2214.5%22%20fill%3D%22white%22%20stroke%3D%22%2336352F%22%20stroke-width%3D%221.5%22%2F%3E%0A%3C%2Fsvg%3E");
+}
+	
+</style></head><body><article id="dd36339d-9acd-47c8-8fc1-623ff9b7cefa" class="page sans"><header><h1 class="page-title"><strong>BatchMint Script</strong></h1><p class="page-description"></p></header><div class="page-body"><p id="f03f9c57-398b-433e-a0b9-f8de0820e1e5" class="">Welcome to <code><strong>batchmint_script.js</strong></code><strong> </strong>- your ultimate minting companion in the NFT world. Designed meticulously for blockchain interactions, this script allows you to mint tokens with unparalleled efficiency and precision. Say goodbye to individual minting and embrace the future of batch processing. </p><hr id="0dbc37fb-a181-41d7-bc50-023072db5ecd"/><h3 id="e0d325dd-6d6f-4fa3-8fe4-1004b4298a19" class=""><strong>🌟 Key Features</strong></h3><ul id="4f132c25-66be-426b-bdd3-b4de26221b23" class="bulleted-list"><li style="list-style-type:disc"><strong>Batch Minting</strong>: Mint up to 250 NFTs in a single operation, making the process swift and hassle-free.</li></ul><ul id="8fd61bd3-1ff7-4190-a44e-1c7ace04ed5b" class="bulleted-list"><li style="list-style-type:disc"><strong>Automatic Distribution</strong>: Activate this to instantly send minted NFTs to a predefined list of addresses as defined in the <code><strong>batchmint_list.txt</strong></code>.</li></ul><ul id="e79debb3-e628-4bc2-b513-1bafdf39bf81" class="bulleted-list"><li style="list-style-type:disc"><strong>Dynamic Metadata</strong>: Flexibility is key. Choose between unique or shared metadata for each minted token.</li></ul><ul id="259ac006-87c2-4236-9999-562a14668318" class="bulleted-list"><li style="list-style-type:disc"><strong>Transaction Management</strong>: Navigate the complexities of transaction retries and pool overflows with grace.</li></ul><ul id="c949ca47-846b-4e76-8554-0016f64d7b27" class="bulleted-list"><li style="list-style-type:disc"><strong>Error Handling</strong>: Comprehensive logging, both to the console and <code><strong>batchmint.log</strong></code>, ensures troubleshooting is straightforward.</li></ul><ul id="cbf71f53-4cb1-4475-b442-bc47f34a8a14" class="bulleted-list"><li style="list-style-type:disc"><strong>Security</strong>: Rest easy with the robustness of mnemonic-based authentication.</li></ul><hr id="d561ba82-9d8b-4c23-a045-eebf52ee68fa"/><h3 id="5b5a689c-635d-4f79-b196-2f4d4933120b" class=""><strong>🔧 Configuration Parameters</strong></h3><p id="21462489-630f-4375-89a8-66d544bdc0b7" class="">Customize the script to your needs with the following parameters:</p><ul id="d960fcd8-6535-4941-ba6e-e6fc39250e2a" class="bulleted-list"><li style="list-style-type:disc"><strong>RPC_NODE</strong>: The network you want to use<p id="3d5ad27b-e1a3-4e33-b428-b58210cea45a" class=""><em>Example</em>: RPC_URLs.canary (Testnet)</p></li></ul><ul id="7dab0a9c-ff71-42d9-b1fb-b9110cd4f744" class="bulleted-list"><li style="list-style-type:disc"><strong>SEED_PHRASE</strong>: Your account&#x27;s mnemonic seed phrase.<p id="4b4925a0-fc85-4e1b-86b3-269d99e7b990" class=""><em>Example</em>: &quot;word1 word2 word3 ... word12&quot;</p></li></ul><ul id="29282dce-1048-41a2-b30e-cb5f57878130" class="bulleted-list"><li style="list-style-type:disc"><strong>COLLECTION_ID</strong>: A unique identifier for your token collection.<p id="5828fa75-9340-44f1-bcd8-bf6ed4726392" class=""><em>Example</em>: 2305</p></li></ul><ul id="934f1af2-a641-4c64-9bdf-7e6b3502abc2" class="bulleted-list"><li style="list-style-type:disc"><strong>TOKEN_START_MINT &amp; TOKEN_END_MINT</strong>: Define your minting range. Please keep in mind that only 250 tokens can be created, minted and distributed at once.<p id="00dfbaba-ef34-4031-a6f0-70ac6767d90f" class=""><em>Example</em>: TokenID 1 to 250</p></li></ul><ul id="8c34c4e4-1008-43c4-87bc-90c149cc6800" class="bulleted-list"><li style="list-style-type:disc"><strong>METADATA_PATH</strong>: Direct the script to your token&#x27;s metadata.<p id="61ef4c30-62f3-42e6-9159-07fa4998c9cc" class=""><em>Example</em>: &quot;https://mydomain.com/metadata/token.json&quot;</p></li></ul><ul id="02b3a3bc-0724-4ed2-85d5-9d98f9d1bafa" class="bulleted-list"><li style="list-style-type:disc"><strong>DISTINCT</strong>: Choose how you want to handle metadata. If set to true, each minted token uses specific tokenIDs (like 1.json, 2.json). If false, a single static file (like &quot;token.json&quot;) is used.<p id="b4b241cc-4384-484c-b121-f09c5aeb0f3a" class=""><em>Example</em>: true or false</p></li></ul><ul id="b62eaa1a-7c60-47a6-8fe6-e83912a40e2e" class="bulleted-list"><li style="list-style-type:disc"><strong>TOKEN_DISTRIBUTION</strong>: Control your distribution. If true, tokens are sent using addresses from <code><strong>batchmint_list.txt</strong></code>. If false, they&#x27;re minted to the creator&#x27;s account.<p id="1326a972-c41c-4356-b92f-d4ed8d3c123b" class=""><em>Example</em>: true or false</p></li></ul><hr id="e71363ad-9d7f-4768-bc1a-972523e9e004"/><h3 id="b9f57a20-50de-4fc4-821b-c2b290adbb09" class=""><strong>🛠 Usage Guide</strong></h3><ol type="1" id="01c28cc7-1d4a-4a36-90e6-343fe52c04d1" class="numbered-list" start="1"><li><strong>Setup</strong>: Make sure Node.js graces your system.</li></ol><ol type="1" id="f27aec56-eac0-46d4-bb12-343ccb8b7422" class="numbered-list" start="2"><li><strong>Install Dependencies</strong>: In the script&#x27;s directory, breathe life into it with <code><strong>npm install</strong></code>.</li></ol><ol type="1" id="63b88e0e-51a0-4729-ab03-873ac1492673" class="numbered-list" start="3"><li><strong>Tailor Your Experience</strong>: Tweak the configuration parameters in the script to your liking.</li></ol><ol type="1" id="6182b9fb-de70-48ee-ba5b-89cd92a278a2" class="numbered-list" start="4"><li><strong>Launch</strong>: Set things in motion with <code><strong>node batchmint_script.js</strong></code>.</li></ol><hr id="f27c0181-e2d8-417a-a017-08dd4fb781e4"/><h3 id="d3a81f4f-4e4a-43ed-829b-4a922d1fc97e" class=""><strong>🚀 Why It&#x27;s Exceptional</strong></h3><ul id="fb9bf26e-547f-48be-b50a-f5f52c9fd7b6" class="bulleted-list"><li style="list-style-type:disc"><strong>Automation</strong>: Individual minting is history. Welcome to the future.</li></ul><ul id="5c9f77e0-5f39-44df-8307-2847d0758a85" class="bulleted-list"><li style="list-style-type:disc"><strong>Versatility</strong>: Single or batch? With or without distribution? You&#x27;re in control.</li></ul><ul id="6542293d-0d50-4596-8f21-087265131675" class="bulleted-list"><li style="list-style-type:disc"><strong>Efficiency</strong>: With clever transaction management, minting is a breeze.</li></ul><ul id="ba2d2ea5-cade-4258-bf53-4666393ece32" class="bulleted-list"><li style="list-style-type:disc"><strong>Safety First</strong>: Security isn&#x27;t an afterthought. Transactions and assets are guarded like treasure.</li></ul><hr id="5231a475-9e47-4c8b-9d58-2db085287bd1"/><h3 id="00881cdc-f28e-4d31-a35a-fefec108a033" class="">🐛<strong> Known Issues // Bugs</strong></h3><ul id="a0a64649-5e14-4987-a598-6cd571222e3b" class="bulleted-list"><li style="list-style-type:disc">Active Listeners remain even though the script has finished all tasks.</li></ul><ul id="ed440e11-2f84-46de-90e1-c1bbed10edab" class="bulleted-list"><li style="list-style-type:disc">It’s not possible to execute more than 250 mints at once. Ideally, e.g. 1000 tokens would be placed in 4 batches of 250 tokens (maximum) each.</li></ul><hr id="c033e214-fdac-4821-818d-295122bb5aaa"/><h3 id="ce10fe42-a616-408e-a02c-c20b5759aa3b" class=""><strong>⚠️ A Word of Caution</strong></h3><p id="e22189e6-8a5a-4ce6-b1da-603aea742a87" class="">Tread carefully. Always test the script in a controlled setting before going live. It&#x27;s better to be safe than sorry.</p><hr id="c5c0f4b1-d473-4c26-8893-de98699fe536"/><h3 id="9c92aaa2-c322-44a4-812e-cce9a17c1ed0" class=""><strong>🎉 In Conclusion</strong></h3><p id="3fcf511d-2c16-4d80-b4c0-064d3aed3576" class=""><strong>BatchMint</strong> is not just a script; it&#x27;s a revolution in the NFT minting process. Whether you&#x27;re an artist unveiling a fresh collection or a developer diving deep into the NFT realm, BatchMint is your trusted ally. Dive in, and may your minting journey be ever prosperous! 🎨🔗</p></div></article></body></html>
