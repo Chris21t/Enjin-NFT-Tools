@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Grumpy Rarity Leaderboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        th, td {
+            padding: 8px 12px;
+            border: 1px solid #ddd;
+            text-align: left;
+        }
+        th {
+            background-color: #f2f2f2;
+        }
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+    </style>
+</head>
+<body>
+    <h1>Rarity Leaderboard by Chris</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>Rank</th>
+                <th>TokenID</th>
+                <th>Rarity Score</th>
+                <th>Grade</th>
+            </tr>
+        </thead>
+        <tbody id="leaderboardBody">
+            <!-- Populated by JavaScript -->
+        </tbody>
+    </table>
+
+    <script>
+
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(fetchToken, 1000);  // Delay to ensure all scripts are loaded
+});
+
+        
+    // Function to display the top tokens based on their rarity score
+    function displayLeaderboard() {
+        const tokenRarityScores = [];
+        for (const token of metadataGlobal) {
+            const scoreData = getTokenGradeAndScore(token);
+            tokenRarityScores.push({
+                edition: token.edition,
+                score: scoreData.score,
+                grade: scoreData.grade
+            });
+        }
+
+        tokenRarityScores.sort((a, b) => b.score - a.score);
+
+        let leaderboardHtml = '';
+        for (let i = 0; i < 10000; i++) {
+            const tokenRanking = tokenRarityScores[i];
+            leaderboardHtml += `<tr><td>${i+1}</td><td>${tokenRanking.edition}</td><td>${tokenRanking.score}</td><td>${tokenRanking.grade}</td></tr>`;
+        }
+        document.getElementById('leaderboardBody').innerHTML = leaderboardHtml;
+    }
+
+    document.addEventListener('DOMContentLoaded', function() {
+        setTimeout(displayLeaderboard, 1000);
+    });
+
+    
+
+// Global variables to store the fetched metadata and trait counters
+let metadataGlobal = [];
+let trait_counters = {};
+
+// Fetch metadata from the provided URL
+function fetchMetadata() {
+    const url = 'https://nftstorage.link/ipfs/bafybeichpfsn46jcrfzxhxadjdkb7vin2xylyyw24uwhumy6ztmsvgud5u/_metadata.json'; //PLACE YOUR _METADATA.JSON HERE
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            metadataGlobal = data;
+            computeRarity();
+            // When metadata is loaded, also show the top tokens
+            displayLeaderboard();
+        })
+        .catch(error => {
+            document.getElementById('results').innerHTML = '<h2>Error fetching metadata.</h2>';
+        });
+}
+
+// Compute rarity for each trait
+function computeRarity() {
+    trait_counters = {};
+    for (const token of metadataGlobal) {
+        for (const attribute of token.attributes) {
+            const trait_type = attribute.trait_type;
+            const value = attribute.value;
+            if (!trait_counters[trait_type]) {
+                trait_counters[trait_type] = {};
+            }
+            if (!trait_counters[trait_type][value]) {
+                trait_counters[trait_type][value] = 0;
+            }
+            trait_counters[trait_type][value]++;
+        }
+    }
+}
+
+function getTokenGradeAndScore(tokenData) {
+    const totalAttributes = tokenData.attributes.length;
+    let rarityScore = 0;
+    let maxTraitScore = 0;
+
+    for (const attribute of tokenData.attributes) {
+        const trait_type = attribute.trait_type;
+        const value = attribute.value;
+        const traitCount = trait_counters[trait_type][value];
+        const percentage = (traitCount / metadataGlobal.length) * 100;
+
+        let traitScore = 0;
+
+        // Assign a trait score based on its percentage occurrence
+        if (percentage <= 1) {
+            traitScore = 9;
+        } else if (percentage <= 5) {
+            traitScore = 5;
+        } else if (percentage <= 10) {
+            traitScore = 2;
+        } else if (percentage <= 15) {
+            traitScore = 1;
+        } else if (percentage <= 50) {
+            traitScore = 0;  // Introduced half-point for traits between 25% and 50%
+        } else {
+            traitScore = 0;  // Score for traits appearing in more than 50% of tokens
+        }
+
+        rarityScore += traitScore;
+
+        // Track the highest trait score for the token
+        if (traitScore > maxTraitScore) {
+            maxTraitScore = traitScore;
+        }
+    }
+
+    // Check if the token has a very rare trait ('S' trait equivalent)
+    if (maxTraitScore === 10) {
+        rarityScore += 5; // Add extra score for having a very rare trait
+    }
+
+    const averageRarity = rarityScore / totalAttributes;
+
+    // Assign a grade based on the average rarity
+    let grade;
+    if (averageRarity >= 4.5) {
+        grade = 'Artifact';
+    } else if (averageRarity >= 3.5) {
+        grade = 'Legendary';
+    } else if (averageRarity >= 2.6) {
+        grade = 'Epic';
+    } else if (averageRarity >= 1.8) {
+        grade = 'Rare';
+    } else if (averageRarity >= 1.0) {
+        grade = 'Uncommon';
+    } else {
+        grade = 'Common';
+    }
+
+    return {
+        grade: grade,
+        score: rarityScore
+    };
+}
+
+
+// Function to compute the ranking of a token
+function computeRanking(tokenScore) {
+    let rank = 1;
+    for (const token of metadataGlobal) {
+        const tokenGradeAndScore = getTokenGradeAndScore(token);
+        if (tokenGradeAndScore.score > tokenScore) {
+            rank++;
+        }
+    }
+    return rank;
+}
+
+// Calling fetchMetadata upon page load
+document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(fetchMetadata, 1000);
+});
+
+// Compute and display the grade counts and total token count
+function displayGradeCounts() {
+    let gradeCounts = {
+        'S': 0,
+        'A': 0,
+        'B': 0,
+        'C': 0,
+        'D': 0
+    };
+
+    for (const token of metadataGlobal) {
+        const tokenGradeAndScore = getTokenGradeAndScore(token);
+        gradeCounts[tokenGradeAndScore.grade]++;
+    }
+
+    document.getElementById('gradeSCount').innerText = gradeCounts['S'];
+    document.getElementById('gradeACount').innerText = gradeCounts['A'];
+    document.getElementById('gradeBCount').innerText = gradeCounts['B'];
+    document.getElementById('gradeCCount').innerText = gradeCounts['C'];
+    document.getElementById('gradeDCount').innerText = gradeCounts['D'];
+    document.getElementById('totalTokenCount').innerText = metadataGlobal.length;
+}
+
+// Call the displayGradeCounts function after fetching metadata and computing rarity
+fetchMetadata().then(() => {
+    displayGradeCounts();
+});
+
+</script>
+</body>
+</html>

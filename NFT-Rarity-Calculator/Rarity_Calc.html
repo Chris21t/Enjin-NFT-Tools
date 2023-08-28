@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>Rarity Calculator by Chris</title>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: linear-gradient(to right, #5a0090, #9a4bea);
+            padding: 20px;
+            color: #ffffff;
+        }
+
+        h1 {
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            font-weight: bold;
+            font-size: 2.5em;
+            color: white;
+        }
+
+        .tabs {
+            margin-bottom: 20px;
+            border: 1px solid #8a2be2;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .tab {
+            display: inline-block;
+            padding: 10px 20px;
+            margin-right: -4px; /* Adjust for border overlap */
+            border: 4px solid transparent;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s;
+            font-weight: bold;
+        }
+
+        .tab:hover {
+            transform: scale(1.05);
+        }
+
+        .tab.active {
+            background-color: #8a2be2;
+            border-color: #fff;
+        }
+
+        .content {
+            display: none;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .content.active {
+            display: block;
+        }
+
+        label,
+        input,
+        button {
+            margin-bottom: 10px;
+        }
+
+        button {
+            padding: 10px 15px;
+            background-color: #8a2be2;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            font-weight: bold;
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        body {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        @keyframes tabEntrance {
+            from {
+                transform: translateY(-15px);
+            }
+
+            to {
+                transform: translateY(0);
+            }
+        }
+
+        .tabs .tab {
+            animation: tabEntrance 0.5s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        .leaderboard {
+            margin-top: 30px;
+            padding: 20px;
+            border-radius: 10px;
+            background: rgba(0, 0, 0, 0.1);
+        }
+
+        .leaderboard h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .leaderboard ol {
+            list-style: none;
+            padding-left: 0;
+        }
+
+        .leaderboard li {
+            font-size: 1.2em;
+            margin-bottom: 10px;
+        }
+
+        .emoji {
+            margin-right: 10px;
+        }
+
+        body {
+            animation: fadeIn 1s ease-out forwards;
+        }
+
+        .tabs .tab {
+            animation: tabEntrance 0.5s ease-out forwards;
+            animation-delay: 0.5s;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500&display=swap');
+
+        body {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        h2 {
+            color: #888B8D;
+        }
+
+        button {
+            background-color: #6F4B9B;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        button:hover {
+            background-color: #5a3d84;
+        }
+
+        #calculator-section,
+        #leaderboard-section {
+            margin-bottom: 40px;
+        }
+
+        input[type="text"] {
+            padding: 10px;
+            border: 1px solid #fffff;
+            border-radius: 5px;
+        }
+
+        .leaderboard-table {
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+            border-radius: 5px;
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron&display=swap');
+
+        body {
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        body {
+            background-color: #1e1e1e;
+            color: #ffffff;
+        }
+
+        h2 {
+            color: #ffffff; /* Purple */
+        }
+
+        button {
+            background-color: #fffff; /* Fetch Button */
+            border: 1px solid #888B8D;
+            color: #1e1e1e;
+        }
+
+        button:hover {
+            background-color: #A020F0;
+            color: #1e1e1e;
+        }
+
+        input[type="text"] {
+            background-color: #1e1e1e;
+            color: #ffffff;
+            border: 1px solid #888B8D;
+        }
+
+        body {
+            background-image: radial-gradient(circle, #1e1e1e, #121212);
+        }
+
+        #token-image {
+            border: 4px solid #00ffcc;
+            border-radius: 8px;
+            box-shadow: 0px 0px 20px #00ffcc;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+
+
+
+
+
+
+
+<body>
+    <div id="particles-js" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;"></div>
+    <h1>Rarity Calculator by Chris</h1>
+    <div class="tabs">
+        <!-- Your tab content here -->
+    </div>
+<!-- Inside the Tab Content: Search Token -->
+<div class="content active" id="searchTokenTab">
+    <!-- Input for TokenID and button to fetch token details -->
+    <div>
+        <label for="tokenIdInput">TokenID:</label>
+        <input id="tokenIdInput" type="text" value="1" />
+        <button onclick="fetchToken()">Fetch Token</button>
+    </div>
+    <div id="results"></div>
+    <div id="resultDiv" class="colored-text"></div> <!-- Add this line -->
+</div>
+
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            setTimeout(fetchToken, 2000);  // Delay to ensure all scripts are loaded
+        });
+    </script>
+
+
+
+<script>
+
+// Global variables to store the fetched metadata and trait counters
+let metadataGlobal = [];
+let trait_counters = {};
+
+// Fetch metadata from the provided URL
+function fetchMetadata() {
+    const url = 'https://nftstorage.link/ipfs/bafybeichpfsn46jcrfzxhxadjdkb7vin2xylyyw24uwhumy6ztmsvgud5u/_metadata.json'; //PLACE YOUR _METADATA.JSON HERE
+    fetch(url)
+        .then(response => response.json())
+        .then(data => {
+            metadataGlobal = data;
+            computeRarity();
+        })
+        .catch(error => {
+            document.getElementById('results').innerHTML = '<h2>Error fetching metadata.</h2>';
+        });
+}
+
+// Compute rarity for each trait
+function computeRarity() {
+    trait_counters = {};
+    for (const token of metadataGlobal) {
+        for (const attribute of token.attributes) {
+            const trait_type = attribute.trait_type;
+            const value = attribute.value;
+            if (!trait_counters[trait_type]) {
+                trait_counters[trait_type] = {};
+            }
+            if (!trait_counters[trait_type][value]) {
+                trait_counters[trait_type][value] = 0;
+            }
+            trait_counters[trait_type][value]++;
+        }
+    }
+}
+
+function getTokenGradeAndScore(tokenData) {
+    const totalAttributes = tokenData.attributes.length;
+    let rarityScore = 0;
+    let maxTraitScore = 0;
+
+    for (const attribute of tokenData.attributes) {
+        const trait_type = attribute.trait_type;
+        const value = attribute.value;
+        const traitCount = trait_counters[trait_type][value];
+        const percentage = (traitCount / metadataGlobal.length) * 100;
+
+        let traitScore = 0;
+
+        // Assign a trait score based on its percentage occurrence
+        if (percentage <= 1) {
+            traitScore = 9;
+        } else if (percentage <= 5) {
+            traitScore = 5;
+        } else if (percentage <= 10) {
+            traitScore = 2;
+        } else if (percentage <= 15) {
+            traitScore = 1;
+        } else if (percentage <= 50) {
+            traitScore = 0;  // Introduced half-point for traits between 25% and 50%
+        } else {
+            traitScore = 0;  // Score for traits appearing in more than 50% of tokens
+        }
+
+        rarityScore += traitScore;
+
+        // Track the highest trait score for the token
+        if (traitScore > maxTraitScore) {
+            maxTraitScore = traitScore;
+        }
+    }
+
+    // Check if the token has a very rare trait ('S' trait equivalent)
+    if (maxTraitScore === 10) {
+        rarityScore += 5; // Add extra score for having a very rare trait
+    }
+
+    const averageRarity = rarityScore / totalAttributes;
+
+    // Assign a grade based on the average rarity
+    let grade;
+    if (averageRarity >= 4.5) {
+        grade = 'Artifact';
+    } else if (averageRarity >= 3.5) {
+        grade = 'Legendary';
+    } else if (averageRarity >= 2.6) {
+        grade = 'Epic';
+    } else if (averageRarity >= 1.8) {
+        grade = 'Rare';
+    } else if (averageRarity >= 1.0) {
+        grade = 'Uncommon';
+    } else {
+        grade = 'Common';
+    }
+
+    return {
+        grade: grade,
+        score: rarityScore
+    };
+}
+
+
+// Function to compute the ranking of a token
+function computeRanking(tokenScore) {
+    let rank = 1;
+    for (const token of metadataGlobal) {
+        const tokenGradeAndScore = getTokenGradeAndScore(token);
+        if (tokenGradeAndScore.score > tokenScore) {
+            rank++;
+        }
+    }
+    return rank;
+}
+
+// Function to search by tokenId
+function fetchToken() {
+    const tokenId = document.getElementById('tokenIdInput').value;
+    const tokenData = metadataGlobal.find(token => token.edition == tokenId);
+    if (tokenData) {
+        displayToken(tokenData);
+    } else {
+        document.getElementById('results').innerHTML = `<h2>No data found for TokenId ${tokenId}</h2>`;
+    }
+}
+
+function displayToken(tokenData) {
+    const tokenGradeAndScore = getTokenGradeAndScore(tokenData);
+    const grade = tokenGradeAndScore.grade;
+    const ranking = computeRanking(tokenGradeAndScore.score);
+    const totalTokens = metadataGlobal.length;
+    const gradeColors = {
+        'Artifact': '#e6cc80',
+        'Legendary': '#ff8000',
+        'Epic': '#a335ee',
+        'Rare': '#0070dd',
+        'Uncommon': '#1eff00',
+	'Common': '#ffffff'
+    };
+let resultsHtml = `<h2>TokenId ${tokenData.edition} Details:</h2>`;
+resultsHtml += `<img src="${tokenData.media[0].url}" alt="Token Image" width="200">`;
+resultsHtml += `<h2>Grade: <span style="color: ${gradeColors[grade]}">${grade}</h2><h2>Ranking: ${ranking} out of ${totalTokens}</h2></span>`;
+
+    for (const attribute of tokenData.attributes) {
+        const trait_type = attribute.trait_type;
+        const value = attribute.value;
+        const traitCount = trait_counters[trait_type][value];
+        const percentage = (traitCount / totalTokens) * 100;
+        resultsHtml += `<p>${trait_type}: ${value} (${percentage.toFixed(2)}%)</p>`;
+    }  
+
+    // Apply grade-specific styles to the document body and other elements
+    document.body.style.backgroundColor = gradeColors[grade];
+    
+    // Update text colors based on grade
+    
+const textColor = grade === 'Artifact' ? '#FFFFFF' :
+                 grade === 'Legendary' ? '#FFFFFF' :
+                 grade === 'Epic' ? '#FFFFFF' :
+                 grade === 'Rare' ? '#FFFFFF' :
+		 grade === 'Uncommon' ? '#FFFFFF' : '#FFFFFF';
+		 grade === 'Common' ? '#FFFFFF' : '#FFFFFF';
+
+
+    document.body.style.color = textColor;
+    
+    // Apply grade-specific text colors to specific elements
+    const elementsToColor = document.querySelectorAll('.colored-text');
+    elementsToColor.forEach(element => {
+        element.style.color = textColor;
+    });
+
+    // Apply grade-specific styles to the resultDiv element
+    const resultDiv = document.getElementById('resultDiv');
+
+    document.getElementById('results').innerHTML = resultsHtml;
+}
+
+
+
+// Automatically fetch metadata on page load
+fetchMetadata();
+
+</script>
+</body>
+</html>
