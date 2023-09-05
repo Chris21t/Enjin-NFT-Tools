@@ -1,0 +1,9 @@
+{
+  "dependencies": {
+    "@polkadot/api": "^10.9.1",
+    "crypto": "^1.0.1",
+    "sqlite3": "^5.1.6",
+    "telegraf": "^4.13.1",
+    "winston": "^3.10.0"
+  }
+}

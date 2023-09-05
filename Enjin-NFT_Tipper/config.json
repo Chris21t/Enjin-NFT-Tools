@@ -1,0 +1,8 @@
+{
+    "network": {
+        "uri": "wss://rpc.matrix.canary.enjin.io",
+        "format": 9030
+    },
+    "collectionId": "YOUR_COLLECTION_ID",
+    "tokenId": "YOUR_TOKEN_ID"
+}
