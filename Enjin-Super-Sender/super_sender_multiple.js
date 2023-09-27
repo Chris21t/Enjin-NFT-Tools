@@ -1,4 +1,6 @@
 import { ApiPromise, WsProvider, Keyring } from "@polkadot/api";
+import { decodeAddress } from '@polkadot/util-crypto';
+import { isHex, isU8a } from '@polkadot/util';
 import inquirer from 'inquirer';
 import readline from 'readline';
 import winston from 'winston';
@@ -20,9 +22,19 @@ const logger = winston.createLogger({
     ]
 });
 
+//Validate addresses
+function isValidAddress(address) {
+    try {
+        const decoded = decodeAddress(address);
+        return isHex(decoded) || isU8a(decoded);
+    } catch (error) {
+        return false;
+    }
+}
+
 // Network configurations
 const RPC_URLS = {
-    efinity: {
+    enjin: {
         uri: "wss://rpc.matrix.blockchain.enjin.io",
         format: 1110,
     },
@@ -96,26 +108,44 @@ async function main() {
             .split('\n')
             .map(address => address.trim())
             .filter(Boolean)
-            .slice(0, parseInt(answers.amount)); // take only the number of recipients as specified by amount
+            .slice(0, parseInt(answers.amount));
     }
+
+    console.log("Read recipients:", recipients);
+
+    const validRecipients = recipients.filter((recipient) => {
+        if (!isValidAddress(recipient)) {
+            logger.error(`Invalid address: ${recipient}`);
+            return false;
+        }
+        return true;
+    });
+
+    console.log("Valid recipients:", validRecipients);
 
     const SENDER = keyring.addFromMnemonic(SEED_PHRASE);
     let { nonce } = await api.query.system.account(SENDER.publicKey);
 
-    for (const recipient of recipients) {
-        const sendAmount = answers.recipientMode === 'single' ? parseInt(answers.amount) : 1;  // If multiple recipients, each gets 1
-    
-        const extrinsic = api.tx.multiTokens.transfer(recipient, answers.COLLECTION_ID, {
+    const transfers = validRecipients.map(recipient => {
+        const sendAmount = answers.recipientMode === 'single' ? parseInt(answers.amount) : 1;
+        return api.tx.multiTokens.transfer(recipient, answers.COLLECTION_ID, {
             Simple: {
                 tokenId: answers.tokenId,
                 amount: sendAmount,
-                keepAlive: true  // Keep the token alive; adjust as necessary
+                keepAlive: true
             }
         });
-        await extrinsic.signAndSend(SENDER, { nonce: nonce++ });
-    
+    });
+
+    const batchExtrinsic = api.tx.utility.batch(transfers);
+    await batchExtrinsic.signAndSend(SENDER, { nonce: nonce++ });
+
+    console.log("Batch transfer sent with nonce:", nonce - 1);
+
+    validRecipients.forEach(recipient => {
+        const sendAmount = answers.recipientMode === 'single' ? parseInt(answers.amount) : 1;
         logger.info(`Sent ${sendAmount} of tokenId: ${answers.tokenId} from collection: ${answers.COLLECTION_ID} to recipient: ${recipient}`);
-    }
+    });
 
     wsProvider.disconnect();
 }
