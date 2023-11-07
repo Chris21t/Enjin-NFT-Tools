@@ -7,7 +7,7 @@ Super Sender is a command-line tool built with the Polkadot API to facilitate th
 - Interactive CLI interface.
 - Logging of transactions with timestamps.
 - Option to send tokens to a single recipient or to multiple recipients from a file.
-- Network selection between `efinity` and `canary`.
+- Network selection between `enjin` and `canary`.
 
 ## Prerequisites:
 1. Node.js installed.
@@ -31,7 +31,7 @@ Super Sender is a command-line tool built with the Polkadot API to facilitate th
     node super_sender.js
     ```
 6. Follow the on-screen prompts to select the network, input collection ID, tokenId, and choose the recipient mode.
-7. If you choose 'multiple' recipients, the script will send tokens to addresses listed in the `recipients.txt` file.
+7. If you choose 'multiple' recipients, the script will chronologically send tokens to the addresses listed in the `recipients.txt` file.
 
 ## Logs:
 - All transactions and errors are logged with timestamps.
