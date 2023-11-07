@@ -93,7 +93,7 @@ async function getUserInput() {
 async function main() {
     const answers = await getUserInput();
     
-    const SEED_PHRASE = "grid blanket blast twenty junk cake grid blanket blast twenty junk cake";  // Replace with your seed phrase
+    const SEED_PHRASE = "your seed phrase";  // Replace with your seed phrase
 
     const wsProvider = new WsProvider(RPC_URLS[answers.NETWORK].uri);
     const api = await ApiPromise.create({ provider: wsProvider });
