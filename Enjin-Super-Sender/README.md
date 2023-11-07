@@ -1,7 +1,7 @@
 
 # Super Sender
 
-Super Sender is a command-line tool built with the Polkadot API to facilitate the sending of tokens to multiple recipients. This tool supports sending tokens on multiple networks such as `efinity` and `canary`.
+Super Sender is a command-line tool built with the Polkadot API to facilitate the sending of tokens to multiple recipients. This tool supports sending tokens on multiple networks such as `enjin` and `canary`.
 
 ## Features:
 - Interactive CLI interface.
