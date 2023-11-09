@@ -1,9 +1,14 @@
 import { ApiPromise, WsProvider, Keyring } from "@polkadot/api";
+import { decodeAddress } from '@polkadot/util-crypto';
+import { isHex, isU8a } from '@polkadot/util';
 import inquirer from 'inquirer';
 import readline from 'readline';
 import winston from 'winston';
 import fs from 'fs';
 import chalk from'chalk';
+
+// Replace with your seed phrase
+const SEED_PHRASE = "toward tuition nature nature ill drill toward tuition nature nature ill drill ";
 
 // Logger setup
 const logger = winston.createLogger({
@@ -20,9 +25,19 @@ const logger = winston.createLogger({
     ]
 });
 
+//Validate addresses
+function isValidAddress(address) {
+    try {
+        const decoded = decodeAddress(address);
+        return isHex(decoded) || isU8a(decoded);
+    } catch (error) {
+        return false;
+    }
+}
+
 // Network configurations
 const RPC_URLS = {
-    efinity: {
+    enjin: {
         uri: "wss://rpc.matrix.blockchain.enjin.io",
         format: 1110,
     },
@@ -78,44 +93,56 @@ async function getUserInput() {
 }
 
 // Main logic
+// Main logic
 async function main() {
     const answers = await getUserInput();
-    
-    const SEED_PHRASE = "grid blanket blast twenty junk cake grid blanket blast twenty junk cake";  // Replace with your seed phrase
 
     const wsProvider = new WsProvider(RPC_URLS[answers.NETWORK].uri);
     const api = await ApiPromise.create({ provider: wsProvider });
-    const keyring = new Keyring({ type: "sr25519" });
+    const keyring = new Keyring({ type: 'sr25519' });
     keyring.setSS58Format(RPC_URLS[answers.NETWORK].format);
 
-    let recipients = [];
+    const SENDER = keyring.addFromMnemonic(SEED_PHRASE);
+    let { nonce } = await api.query.system.account(SENDER.address);
+    nonce = nonce.toBn().toNumber();
+
+    let recipients;
     if (answers.recipientMode === 'single') {
-        recipients.push(answers.singleRecipient);
-    } else if (answers.recipientMode === 'multiple') {
+        recipients = [answers.singleRecipient];
+    } else {
         recipients = fs.readFileSync('recipients.txt', 'utf-8')
             .split('\n')
             .map(address => address.trim())
-            .filter(Boolean)
-            .slice(0, parseInt(answers.amount)); // take only the number of recipients as specified by amount
+            .filter(address => isValidAddress(address))
+            .slice(0, parseInt(answers.amount));
     }
 
-    const SENDER = keyring.addFromMnemonic(SEED_PHRASE);
-    let { nonce } = await api.query.system.account(SENDER.publicKey);
+    const validRecipients = recipients.filter(isValidAddress);
 
-    for (const recipient of recipients) {
-        const sendAmount = answers.recipientMode === 'single' ? parseInt(answers.amount) : 1;  // If multiple recipients, each gets 1
-    
-        const extrinsic = api.tx.multiTokens.transfer(recipient, answers.COLLECTION_ID, {
+    const transfers = validRecipients.map(recipient => {
+        const sendAmount = answers.recipientMode === 'single' ? parseInt(answers.amount) : 1;
+        return api.tx.multiTokens.transfer(recipient, answers.COLLECTION_ID, {
             Simple: {
                 tokenId: answers.tokenId,
                 amount: sendAmount,
-                keepAlive: true  // Keep the token alive; adjust as necessary
+                keepAlive: true
             }
         });
-        await extrinsic.signAndSend(SENDER, { nonce: nonce++ });
-    
-        logger.info(`Sent ${sendAmount} of tokenId: ${answers.tokenId} from collection: ${answers.COLLECTION_ID} to recipient: ${recipient}`);
+    });
+
+    try {
+        const batchExtrinsic = api.tx.utility.batch(transfers);
+        await batchExtrinsic.signAndSend(SENDER, { nonce });
+        logger.info(`Batch transfer sent with nonce: ${nonce}`);
+    } catch (error) {
+        logger.error(`Batch transfer failed: ${error.message}`);
+        return;
     }
+
+    validRecipients.forEach(recipient => {
+        const sendAmount = answers.recipientMode === 'single' ? parseInt(answers.amount) : 1;
+        logger.info(`Sent ${sendAmount} of tokenId: ${answers.tokenId} from collection: ${answers.COLLECTION_ID} to recipient: ${recipient}`);
+    });
 
     wsProvider.disconnect();
 }
