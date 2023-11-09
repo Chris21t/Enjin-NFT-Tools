@@ -1,15 +1,18 @@
 {
-    "name": "batchmint-send",
+    "name": "super_sender",
     "version": "1.0.0",
-    "description": "A script for batch minting and distributing NFTs on Polkadot/Substrate-based blockchains.",
-    "main": "batchmint_script.js",
+    "description": "A script for batch sending NFTs on Polkadot/Substrate-based blockchains.",
+    "main": "super_sender.js",
     "type": "module",
+    "scripts": {
+        "start": "node super_sender.js"
+    },
     "dependencies": {
         "@polkadot/api": "^10.9.1",
         "@polkadot/util-crypto": "^12.3.2",
         "chalk": "^5.3.0",
-        "express": "^4.18.2",
         "inquirer": "^9.2.10",
-        "winston": "^3.10.0"
+        "winston": "^3.10.0",
+        "readline": "npm:readline-sync@^1.4.10"
     }
 }
