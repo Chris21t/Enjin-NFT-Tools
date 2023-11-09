@@ -8,7 +8,7 @@ import fs from 'fs';
 import chalk from'chalk';
 
 // Replace with your seed phrase
-const SEED_PHRASE = "toward tuition nature nature ill drill toward tuition nature nature ill drill ";
+const SEED_PHRASE = "toward tuition nature nature ill drill toward tuition nature nature ill drill";
 
 // Logger setup
 const logger = winston.createLogger({
