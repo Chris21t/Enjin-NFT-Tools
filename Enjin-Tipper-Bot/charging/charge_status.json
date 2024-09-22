@@ -1,0 +1,25 @@
+{
+    "Power": "On",
+    "collectionId": 2479,
+    "tokenId": 9,
+    "balanceENJ": 21,
+    "minimumENJ": 10,
+    "minCharge": 5,
+    "maxCharge": 200,
+    "On": {
+        "status": "idle",
+        "details": {
+            "chargingId": "",
+            "startTime": "",
+            "endTime": ""
+        }
+    },
+    "Off": {
+        "status": "deactivated",
+        "details": {
+            "chargingId": "",
+            "startTime": "",
+            "endTime": ""
+        }
+    }
+}

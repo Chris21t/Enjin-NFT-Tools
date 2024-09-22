@@ -1,0 +1,46 @@
+{
+    "chargingId": "CHG13",
+    "status": "completed",
+    "startingAt": "2024-02-13T16:24:21.976Z",
+    "endingAt": "2024-02-13T16:34:21.976Z",
+    "collectionIdCharging": 2424,
+    "tokenIdCharging": 20,
+    "amountCharging": 90,
+    "backlisted": "no",
+    "userNameCharging": "wisdompanda",
+    "userIdCharging": 5645055462,
+    "userRankCharging": "Admin",
+    "userRatioCharging": 1,
+    "startAmountBotToken": 9168,
+    "requiredAmountBotToken": 90,
+    "targetAmountBotToken": 9258,
+    "chargingTokenMetadata": {
+        "name": "₿itcoin Smashing Glass",
+        "description": "₿itcoin Smashing Glass.    #₿itcoin #₿TC\n\nOriginal Collection: https://opensea.io/collection/bitcoin4all/\nNew Collection: https://nft.io/collection/bitcoin-for-all/\n\n\"₿itcoin Cuts through the noise!\"    #Bitcoin #BTC\n\nThis video highlights the disruptive power of Bitcoin, symbolized by it \"smashing through glass\" and cutting through the noise of traditional financial systems and currencies. It represents Bitcoin's ability to bring about significant change in the financial world.",
+        "image": "https://nft.production.enjinusercontent.com/uploads/images/dzdkvslldbrmg3if.gif",
+        "supply": "100",
+        "cap": "Fully Minted"
+    },
+    "balanceChecks": [
+        {
+            "checkNumber": 1,
+            "currentBalance": 9168,
+            "neededBalance": 90,
+            "timestamp": "2024-02-13T16:24:26.793Z"
+        },
+        {
+            "checkNumber": 2,
+            "currentBalance": 9258,
+            "neededBalance": 0,
+            "timestamp": "2024-02-13T16:26:58.409Z"
+        }
+    ],
+    "distribution": {
+        "chargingAmount": 90,
+        "currentUsers": 0,
+        "distributionAmount": 0,
+        "selection": "all",
+        "hash1": "example_hash1",
+        "hash2": "example_hash2"
+    }
+}

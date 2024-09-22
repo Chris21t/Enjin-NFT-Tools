@@ -1,0 +1,40 @@
+{
+    "chargingId": "CHG17",
+    "status": "completed",
+    "startingAt": "2024-02-13T19:01:11.051Z",
+    "endingAt": "2024-02-13T19:11:11.052Z",
+    "collectionIdCharging": 2405,
+    "tokenIdCharging": 3,
+    "amountCharging": 5,
+    "backlisted": "no",
+    "userNameCharging": "wisdompanda",
+    "userIdCharging": 5645055462,
+    "userRankCharging": "Admin",
+    "userRatioCharging": 1,
+    "startAmountBotToken": 9179,
+    "requiredAmountBotToken": 5,
+    "targetAmountBotToken": 9184,
+    "chargingTokenMetadata": {
+        "name": "A Bag",
+        "description": "Welcome to Enjin Matrixchain! 🌌\n\nYou've successfully received \"A Bag\". It does absolutely nothing, but it works!\n\n👉 This item was batch-transferred to your Enjin Matrixchain address via Super_Batcher.js. 👈\n\nIt is official: The future is here! 👨🏼‍💻",
+        "image": "https://nft.production.enjinusercontent.com/uploads/files/vudyhax4v2ahngbn.jpg",
+        "supply": "1,991",
+        "cap": "Unlimited"
+    },
+    "balanceChecks": [
+        {
+            "checkNumber": 1,
+            "currentBalance": 9202,
+            "neededBalance": 0,
+            "timestamp": "2024-02-13T19:03:43.769Z"
+        }
+    ],
+    "distribution": {
+        "chargingAmount": 5,
+        "currentUsers": 0,
+        "distributionAmount": 0,
+        "selection": "all",
+        "hash1": "example_hash1",
+        "hash2": "example_hash2"
+    }
+}

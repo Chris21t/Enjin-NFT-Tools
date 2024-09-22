@@ -1,0 +1,10 @@
+{
+  "Rookie": "locked",
+  "Bronze": "locked",
+  "Silver": 5,
+  "Gold": 4,
+  "Platinum": 3,
+  "Diamond": 2,
+  "Champion": 1,
+  "Admin": 1
+}

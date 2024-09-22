@@ -1,0 +1,46 @@
+{
+    "chargingId": "CHG23",
+    "status": "completed",
+    "startingAt": "2024-02-14T19:23:21.242Z",
+    "endingAt": "2024-02-14T20:23:21.242Z",
+    "collectionIdCharging": 2424,
+    "tokenIdCharging": 152,
+    "amountCharging": 10,
+    "backlisted": "no",
+    "userNameCharging": "wisdompanda",
+    "userIdCharging": 5645055462,
+    "userRankCharging": "Admin",
+    "userRatioCharging": 1,
+    "startAmountBotToken": 8783,
+    "requiredAmountBotToken": 10,
+    "targetAmountBotToken": 8793,
+    "chargingTokenMetadata": {
+        "name": "₿ See you on the Moon ₿",
+        "description": "See you on the Moon. #₿itcoin #₿TC\n\nOriginal Collection: https://opensea.io/collection/bitcoin4all/ \nNew Collection: https://nft.io/collection/bitcoin-for-all/\n\n\"Get on the Mission Bitcoin ⚡ 24/7 Bitcoiners 🫡\"   #Bitcoin #BTC\n\nThe image portrays an astronaut standing on a barren, rocky landscape reminiscent of the moon's surface, with a Bitcoin flag planted firmly in the ground. The scene symbolizes the aspiration of Bitcoin enthusiasts to achieve unprecedented heights and reach the moon in their quest for financial freedom.",
+        "image": "https://nft.production.enjinusercontent.com/uploads/files/pzxyrgotxy6qtrt0.jpg",
+        "supply": "100",
+        "cap": "Fully Minted"
+    },
+    "balanceChecks": [
+        {
+            "checkNumber": 1,
+            "currentBalance": 8779,
+            "neededBalance": 14,
+            "timestamp": "2024-02-14T19:38:26.419Z"
+        },
+        {
+            "checkNumber": 2,
+            "currentBalance": 8815,
+            "neededBalance": 0,
+            "timestamp": "2024-02-14T19:53:27.974Z"
+        }
+    ],
+    "distribution": {
+        "chargingAmount": 10,
+        "currentUsers": 0,
+        "distributionAmount": 0,
+        "selection": "all",
+        "hash1": "example_hash1",
+        "hash2": "example_hash2"
+    }
+}

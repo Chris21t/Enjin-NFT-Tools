@@ -1,0 +1,52 @@
+{
+    "chargingId": "CHG22",
+    "status": "completed",
+    "startingAt": "2024-02-14T07:39:20.059Z",
+    "endingAt": "2024-02-14T08:39:20.059Z",
+    "collectionIdCharging": 2405,
+    "tokenIdCharging": 12,
+    "amountCharging": 25,
+    "backlisted": "no",
+    "userNameCharging": "wisdompanda",
+    "userIdCharging": 5645055462,
+    "userRankCharging": "Admin",
+    "userRatioCharging": 1,
+    "startAmountBotToken": 9307,
+    "requiredAmountBotToken": 25,
+    "targetAmountBotToken": 9332,
+    "chargingTokenMetadata": {
+        "name": "Charging Module [Launch]",
+        "description": "Here we go!",
+        "image": "https://nft.production.enjinusercontent.com/uploads/files/o8hevbabmset4vmu.jpg",
+        "supply": "250",
+        "cap": "Unlimited"
+    },
+    "balanceChecks": [
+        {
+            "checkNumber": 1,
+            "currentBalance": 9291,
+            "neededBalance": 41,
+            "timestamp": "2024-02-14T07:54:22.702Z"
+        },
+        {
+            "checkNumber": 2,
+            "currentBalance": 9319,
+            "neededBalance": 13,
+            "timestamp": "2024-02-14T08:09:24.392Z"
+        },
+        {
+            "checkNumber": 3,
+            "currentBalance": 9379,
+            "neededBalance": 0,
+            "timestamp": "2024-02-14T08:24:25.981Z"
+        }
+    ],
+    "distribution": {
+        "chargingAmount": 25,
+        "currentUsers": 0,
+        "distributionAmount": 0,
+        "selection": "all",
+        "hash1": "example_hash1",
+        "hash2": "example_hash2"
+    }
+}

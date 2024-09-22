@@ -1,0 +1,21 @@
+{
+  "address": "efPjs1X2fo4ompPZsdBvyjE9xDEJasnbuTDMoMsjMJhPkZGRm",
+  "balance": "43,045,513,608,346,585,094",
+  "reserved": "2,268,049,916,000,000,000,000",
+  "tokens": [
+    {
+      "type": "balanceToken",
+      "balance": "995",
+      "collectionId": 2479,
+      "tokenId": 9
+    },
+    {
+      "type": "chargeToken",
+      "balance": "898",
+      "collectionId": 2479,
+      "tokenId": 1
+    }
+  ],
+  "nonce": "108,505",
+  "timestamp": "28.3.2024, 16:00:00"
+}

@@ -1,0 +1,46 @@
+{
+    "chargingId": "CHG27",
+    "status": "completed",
+    "startingAt": "2024-02-15T16:24:47.039Z",
+    "endingAt": "2024-02-15T17:24:47.039Z",
+    "collectionIdCharging": 2424,
+    "tokenIdCharging": 154,
+    "amountCharging": 88,
+    "backlisted": "no",
+    "userNameCharging": "thassosbeach",
+    "userIdCharging": 1484532296,
+    "userRankCharging": "Platinum",
+    "userRatioCharging": 3,
+    "startAmountBotToken": 9165,
+    "requiredAmountBotToken": 264,
+    "targetAmountBotToken": 9429,
+    "chargingTokenMetadata": {
+        "name": "₿TC is Unstoppable",
+        "description": "₿itcoin is Unstoppable. #₿itcoin #₿TC\n\nOriginal Collection: https://opensea.io/collection/bitcoin4all/ \nNew Collection: https://nft.io/collection/bitcoin-for-all/\n\n\"Tick tock, next block\"   #Bitcoin #BTC\n\nThe image features a powerful and majestic bull charging forward with intense energy, enveloped in a fiery glow. The bull's muscular form is illuminated against a dramatic backdrop of smoke and fire, with a prominent Bitcoin symbol displayed on its shield. Debris and glowing embers scatter the ground, emphasizing the force of its charge. The dynamic scene symbolizes a bullish market for Bitcoin.",
+        "image": "https://nft.production.enjinusercontent.com/uploads/files/yqr0krsehn3wimdj.jpg",
+        "supply": "100",
+        "cap": "Fully Minted"
+    },
+    "balanceChecks": [
+        {
+            "checkNumber": 1,
+            "currentBalance": 9416,
+            "neededBalance": 13,
+            "timestamp": "2024-02-15T16:39:53.382Z"
+        },
+        {
+            "checkNumber": 2,
+            "currentBalance": 9436,
+            "neededBalance": 0,
+            "timestamp": "2024-02-15T16:54:55.303Z"
+        }
+    ],
+    "distribution": {
+        "chargingAmount": 88,
+        "currentUsers": 0,
+        "distributionAmount": 0,
+        "selection": "all",
+        "hash1": "example_hash1",
+        "hash2": "example_hash2"
+    }
+}

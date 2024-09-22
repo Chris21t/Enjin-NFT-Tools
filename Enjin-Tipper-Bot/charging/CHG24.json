@@ -1,0 +1,40 @@
+{
+    "chargingId": "CHG24",
+    "status": "completed",
+    "startingAt": "2024-02-14T21:11:33.337Z",
+    "endingAt": "2024-02-14T22:11:33.337Z",
+    "collectionIdCharging": 2405,
+    "tokenIdCharging": 13,
+    "amountCharging": 100,
+    "backlisted": "no",
+    "userNameCharging": "wisdompanda",
+    "userIdCharging": 5645055462,
+    "userRankCharging": "Admin",
+    "userRatioCharging": 1,
+    "startAmountBotToken": 8712,
+    "requiredAmountBotToken": 100,
+    "targetAmountBotToken": 8812,
+    "chargingTokenMetadata": {
+        "name": "Good Night",
+        "description": "Good Night! 💜",
+        "image": "https://nft.production.enjinusercontent.com/uploads/files/veelyugsijyt2zp8.jpg",
+        "supply": "200",
+        "cap": "Unlimited"
+    },
+    "balanceChecks": [
+        {
+            "checkNumber": 1,
+            "currentBalance": 8902,
+            "neededBalance": 0,
+            "timestamp": "2024-02-14T21:26:35.925Z"
+        }
+    ],
+    "distribution": {
+        "chargingAmount": 100,
+        "currentUsers": 0,
+        "distributionAmount": 0,
+        "selection": "all",
+        "hash1": "example_hash1",
+        "hash2": "example_hash2"
+    }
+}

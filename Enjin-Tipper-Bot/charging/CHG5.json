@@ -1,0 +1,46 @@
+{
+    "chargingId": "CHG5",
+    "status": "initiation",
+    "startingAt": "2024-02-12T21:00:13.529Z",
+    "endingAt": "2024-02-12T21:10:13.529Z",
+    "collectionIdCharging": 2405,
+    "tokenIdCharging": 12,
+    "amountCharging": 100,
+    "backlisted": "no",
+    "userNameCharging": "wisdompanda",
+    "userIdCharging": 5645055462,
+    "userRankCharging": "Admin",
+    "userRatioCharging": 0.5,
+    "startAmountBotToken": 8787,
+    "requiredAmountBotToken": 50,
+    "targetAmountBotToken": 8837,
+    "chargingTokenMetadata": {
+        "name": "Charging Module [Launch]",
+        "description": "Here we go!",
+        "image": "https://nft.production.enjinusercontent.com/uploads/files/o8hevbabmset4vmu.jpg",
+        "supply": "250",
+        "cap": "Unlimited"
+    },
+    "balanceChecks": [
+        {
+            "checkNumber": 1,
+            "currentBalance": 8787,
+            "neededBalance": 50,
+            "timestamp": "2024-02-12T21:00:22.171Z"
+        },
+        {
+            "checkNumber": 2,
+            "currentBalance": 8787,
+            "neededBalance": 50,
+            "timestamp": "2024-02-12T21:02:53.681Z"
+        }
+    ],
+    "distribution": {
+        "chargingAmount": 100,
+        "currentUsers": 0,
+        "distributionAmount": 0,
+        "selection": "all",
+        "hash1": "example_hash1",
+        "hash2": "example_hash2"
+    }
+}

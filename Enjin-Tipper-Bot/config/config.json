@@ -1,0 +1,70 @@
+{
+    "network": {
+        "uri": "wss://rpc.matrix.blockchain.enjin.io",
+        "format": 1110
+    },
+
+    "BOT_OWNER_ID": "YOUR TELEGRAM ID",
+    "BOT_TOKEN": "YOUR TELEGRAM BOT TOKEN",
+    "CHAT_ID": "TELEGRAM GROUP ID FOR PINNED POSTS ETC",
+
+    "address": "YOUR TIPPER BOTs MATRIXCHAIN ADDRESS",
+    "collectionId": "YOUR TIPPER BOTs COLLECTION ID",
+    "tokenId": "YOUR TIPPER BOTs TOKEN ID",
+    "tokenImage": "https://nft.production.enjinusercontent.com/uploads/files/tzk5om2pvhpw8cbj.jpg",
+
+    "whiteListMainCollectionId": "2479",
+
+    "whiteListTokens": [
+        { "tokenId": "1", "whiteListFile": "whitelist.txt" },
+        { "tokenId": "9", "whiteListFile": "whitelists/Tipper-Token.txt" }
+    ],
+
+    "whiteListCollaborationTokens": [
+    ],
+
+    "stipCollectionId": "2479",
+    "stipTokenId": "13",
+    "stipImageUrl": "https://nft.production.enjinusercontent.com/uploads/files/42o68szc1ntoxdrq.jpg",
+
+    "trickOrTreatCollectionId": "2479",
+    "trickOrTreatTokenId": "21",
+
+    "adminCollectionId": "2479",
+    "adminTokenId": "16",
+    "adminImageUrl": "https://nft.production.enjinusercontent.com//uploads//files//boffzh5itfqbugd2.jpg",
+
+    "championCollectionId": "2479",
+    "championTokenId": "12",
+    "championImageUrl": "https://nft.production.enjinusercontent.com/uploads/files/3p979x4e9ye22h2v.jpg",
+
+    "diamondCollectionId": "2479",
+    "diamondTokenId": "11",
+    "diamondImageUrl": "https://nft.production.enjinusercontent.com/uploads/files/bdk9bdvghrvj6e9z.jpg",
+
+    "platinumCollectionId": "2479",
+    "platinumTokenId": "10",
+    "platinumImageUrl": "https://nft.production.enjinusercontent.com/uploads/files/g2kqzhe2t9xtnqfz.jpg",
+
+    "goldCollectionId": "2479",
+    "goldTokenId": "3",
+    "goldImageUrl": "https://nft.production.enjinusercontent.com/uploads/files/afk7k8f69axcodja.jpg",
+
+    "silverCollectionId": "2479",
+    "silverTokenId": "4",
+    "silverImageUrl": "https://nft.production.enjinusercontent.com/uploads/files/pyytdcjqwvfkgi8c.jpg",
+
+    "bronzeCollectionId": "2479",
+    "bronzeTokenId": "5",
+    "bronzeImageUrl": "https://nft.production.enjinusercontent.com/uploads/files/mq2drvqb4wqb7nyy.jpg",
+
+    "rookieCollectionId": "2479",
+    "rookieTokenId": "6",
+    "rookieImageUrl": "https://nft.production.enjinusercontent.com/uploads/files/qml8juhnprnspmub.jpg",
+
+    "GodV1CollectionId": "2479",
+    "GodV1TokenId": "19",
+    "GodV1TokenName": "God Mode v6",
+    "GodV1ImageUrl": "https://nft.production.enjinusercontent.com/uploads/files/ptgxohpumdk6mgly.jpg",
+    "GodV1TokenMessage": "Hey ho, fellow NFT Tippers! I hope everybody is doing great! Quick shout-out to all of you! We in fact crossed more than 100,000 Tipper Tokens sent lately! A few final adjustments over the next few months and it's gonna be even more legendary! 😎"
+}

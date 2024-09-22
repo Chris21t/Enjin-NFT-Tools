@@ -1,0 +1,33 @@
+{
+    "chargingId": "CHG7",
+    "status": "initiation",
+    "startingAt": "2024-02-12T21:19:53.948Z",
+    "endingAt": "2024-02-12T21:29:53.948Z",
+    "collectionIdCharging": 2190,
+    "tokenIdCharging": 12,
+    "amountCharging": 10,
+    "backlisted": "no",
+    "userNameCharging": "wisdompanda",
+    "userIdCharging": 5645055462,
+    "userRankCharging": "Admin",
+    "userRatioCharging": 0.5,
+    "startAmountBotToken": 8841,
+    "requiredAmountBotToken": 5,
+    "targetAmountBotToken": 8846,
+    "chargingTokenMetadata": {
+        "name": "Enjin's Journey",
+        "description": "Always believe, always HODL!",
+        "image": "https://nft.production.enjinusercontent.com/uploads/files/d8cs54fablu0ib9n.png",
+        "supply": "10,000",
+        "cap": "Single Edition"
+    },
+    "balanceChecks": [],
+    "distribution": {
+        "chargingAmount": 10,
+        "currentUsers": 0,
+        "distributionAmount": 0,
+        "selection": "all",
+        "hash1": "example_hash1",
+        "hash2": "example_hash2"
+    }
+}

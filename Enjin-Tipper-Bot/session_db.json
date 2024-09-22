@@ -1,0 +1,20 @@
+{
+  "sessions": [
+    {
+      "id": "5645055462:5645055462",
+      "data": {
+        "registration": {
+          "step": "waiting_for_address"
+        }
+      }
+    },
+    {
+      "id": "6149663379:6149663379",
+      "data": {
+        "registration": {
+          "step": "waiting_for_address"
+        }
+      }
+    }
+  ]
+}
