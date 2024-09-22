@@ -112,8 +112,8 @@ const logger = winston.createLogger({
 
 // 🌐 Network Configurations 🌐
 const RPC_URLS = {
-    efinity: {
-        uri: "wss://rpc.efinity.io",
+    enjin: {
+        uri: "wss://rpc.matrix.blockchain.enjin.io",
         format: 1110,
     },
     canary: {
@@ -123,11 +123,11 @@ const RPC_URLS = {
 };
 
 // 🎨 Account and Token Configuration 🎨
-const RPC_NODE = RPC_URLS.canary;
+const RPC_NODE = RPC_URLS.enjin;
 const SEED_PHRASE = "grid blanket blast twenty junk cake grid blanket blast twenty junk cake";
-const COLLECTION_ID = 22854;
-const TOKEN_START_MINT = 1501;
-const TOKEN_END_MINT = 1505;
+const COLLECTION_ID = 2402;
+const TOKEN_START_MINT = 251;
+const TOKEN_END_MINT = 255;
 const METADATA_PATH = "https://nft.production.enjinusercontent.com/metadata/tokens/6y53myseglxljqbo.json";
 const DISTINCT = false;
 const TOKEN_DISTRIBUTION = false;
