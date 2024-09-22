@@ -1,0 +1,43 @@
+{
+  "name": "Grumpy Generation",
+  "description": "Nobody can stop us!",
+  "external_url": "",
+  "fallback_image": "https://nftstorage.link/ipfs/bafybeidecivwnewezc6xk7zmkci54y3haekiwg6lbomaaa6b4l4t37ewsu/9.png",
+  "media": [
+    {
+      "type": "image/jpeg",
+      "url": "https://nftstorage.link/ipfs/bafybeidecivwnewezc6xk7zmkci54y3haekiwg6lbomaaa6b4l4t37ewsu/9.png"
+    }
+  ],
+  "attributes": [
+    {
+      "trait_type": "BACKGROUND",
+      "value": "Violet"
+    },
+    {
+      "trait_type": "BASE GRUMPY",
+      "value": "Yellow"
+    },
+    {
+      "trait_type": "EYEZ",
+      "value": "Green"
+    },
+    {
+      "trait_type": "OUTFITZ",
+      "value": "TShirt White"
+    },
+    {
+      "trait_type": "FACE TRAITZ",
+      "value": "Whistle"
+    },
+    {
+      "trait_type": "NECK TRAITZ",
+      "value": "ZERO"
+    },
+    {
+      "trait_type": "UPPER TRAITZ",
+      "value": "Sound Beam Blue"
+    }
+  ],
+  "edition": 9
+}
