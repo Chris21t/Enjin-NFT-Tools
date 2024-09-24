@@ -22,6 +22,11 @@ Welcome to **Enjin Chain Generative NFTs** – a customized version of the popul
 
 ### Step 1: Installation and Setup
 
+> **Requirements**: 
+> - **Node.js**: Needed to run the NFT generation script.
+> - **Python**: Used to update the JSON metadata with image links.
+> - **Visual Studio Code** (or any preferred editor).
+
 1. Download and unzip `Enjin-Generative-NFTs.zip`.
 2. Open the folder in **Visual Studio Code** or your preferred editor.
 3. Navigate to the `src` folder and open `config.js`. Here, you can:
