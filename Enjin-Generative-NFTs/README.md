@@ -44,11 +44,15 @@ Welcome to **Enjin Chain Generative NFTs** – a customized version of the popul
 ### Step 3: Generate NFTs
 
 1. Open a new terminal in Visual Studio Code.
-2. Run the following command to start generating your NFTs:
+2. Run the following command to make sure all dependencies are properly installed:
+   ```bash
+   npm install
+   ```
+3. Run the following command to start generating your NFTs:
    ```bash
    node index.js
    ```
-3. The images and metadata will be saved to the `build` folder.
+4. The images and metadata will be saved to the `build` folder.
 
 ---
 
